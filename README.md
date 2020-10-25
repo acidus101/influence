@@ -10,6 +10,7 @@
     - header icrim defininf the icrim class
     - driver code for greedy method
     - greedy_method file
+    - greedy header file
 
 # structure of data obtained
     - hub.txt file(hub nodes have their neighbour in different community)

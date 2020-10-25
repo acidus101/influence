@@ -272,7 +272,7 @@ void icrim::influence_maximization(string path, int n, int k, int t, int c, stri
 
 }
 
-void icrim::clear(){
+void icrim::clr(){
     // to deallocate memory used
 }
 

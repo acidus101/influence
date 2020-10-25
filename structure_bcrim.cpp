@@ -1,5 +1,5 @@
 // include header file for bcrim class
-
+#include "BCRIM.h"
 std::default_random_engine generator((unsigned int)(time(NULL)));
 std::uniform_real_distribution<double> dist(0.0, 1.0);
 
@@ -223,7 +223,7 @@ void bcrim::influence_maximization(string path, int n, int k, int t, int c, stri
     // mark it as seed
 }
 
-void bcrim::clear(){
+void bcrim::clr(){
     // to deallocate memory used
 }
 

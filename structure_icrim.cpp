@@ -42,6 +42,7 @@ void icrim::ExtendseedsIC(){
     // the remporary queue contains set s
     while(!que.empty()){
         // pop each node
+        
         for(;;){// for each neighbour node
             double puw; // puw a random number(define)
             if(puw <= p){

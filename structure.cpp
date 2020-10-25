@@ -21,7 +21,6 @@ void icrim(){
 }
 
 
-
 // use driver code and  input graph, the diffusion model M ,​ the parameters k, t.
 // driver code
 int main(){

@@ -8,6 +8,8 @@
     - icrim file with ic and lt model
     - header bcrim defining the bcrim class
     - header icrim defininf the icrim class
+    - driver code for greedy method
+    - greedy_method file
 
 # structure of data obtained
     - hub.txt file(hub nodes have their neighbour in different community)
@@ -66,3 +68,16 @@
         - influence_maximization_icrim(structured)
         - random_number(structured)
         - clear function to clear the allocated memory(listed)
+    - greedy driver file(listed)
+        - include header files(structured)
+        - kempg function(sructured)
+        - driver code(structured)
+    - greedy method file(listed)
+        - constructor for kempg class(structured)
+        - initialize function to initialize the class attributes(listed)
+        - ic model(structured)
+        - lt model (structured)
+        - influence function(structured)
+        - clear function to deallocate(structured)
+    - greedy header file(listed)
+        -yet to be done

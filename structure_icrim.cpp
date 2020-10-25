@@ -1,20 +1,23 @@
 // include header file for bcrim class
+// TC = recordes timestamp when the last seed node that will affect this comm
+// TN = records timestamp when node's MIS is computed
+#include "ICRIM.h"
 
 std::default_random_engine generator((unsigned int)(time(NULL)));
 std::uniform_real_distribution<double> dist(0.0, 1.0);
 
-// constructor for bcrim
-bcrim::bcrim(){
+// constructor for icrim
+icrim::icrim(){
     // intialize private attributes
 }
 
 // allocating space to class attributes
-void bcrim::initialize(){
+void icrim::initialize(){
 
 }
 
 // loading graph into communities
-void bcrim::load(string path, string M){
+void icrim::load(string path, string M){
     // define path for community node(node_comm.txt)
     // define path for hub node(hub.txt)
     // define path for edges("model"-edeges_pp.txt)
@@ -27,7 +30,7 @@ void bcrim::load(string path, string M){
 
 }
 
-void bcrim::ExtendseedsIC(){
+void icrim::ExtendseedsIC(){
     // initialize set h to null set and using u as starting node and push
     // set s into h and follow the algorithm further to extends seeds
     queue<int> que;
@@ -60,7 +63,7 @@ void bcrim::ExtendseedsIC(){
     }
 }
 
-void bcrim::ExtendseedsLT(){
+void icrim::ExtendseedsLT(){
     for(;;){
         // initialize threshold to a random number
         // intialize the added weight to zero
@@ -99,7 +102,7 @@ void bcrim::ExtendseedsLT(){
 }
 
 // the diffusion models
-double bcrim::IC(){
+double icrim::IC(){
     // push all the nodes into a queue mark the node visited
 
     while(!queue.empty()){
@@ -120,7 +123,7 @@ double bcrim::IC(){
     return influence_spread;
 }
 
-double bcrim::LT(){
+double icrim::LT(){
     // push all the nodes into a queue mark the node visited
 
     while(!queue.empty()){
@@ -144,7 +147,7 @@ double bcrim::LT(){
 // for calculating coomunity based marginal influence spread
 // (the edge weight is probability of the node getting activated
 // and gets activated is random p is <= the original puv)
-double bcrim::CIC(){
+double icrim::CIC(){
     // initialize marginal influence spread
     double gain = 0.0;
     
@@ -169,7 +172,7 @@ double bcrim::CIC(){
 // for calculating coomunity based marginal influence spread
 // (the edge weight is the influence u exerts on v 
 // and gets activated on passing the threshold)
-double bcrim::CLT(){
+double icrim::CLT(){
     // initialize marginal influence spread
     double gain = 0.0;
     
@@ -191,38 +194,84 @@ double bcrim::CLT(){
     return gain/t;
 }
 
-void bcrim::output_to_file(){
+void icrim::output_to_file(){
     // write the output to a new file
 }
 
-void bcrim::influence_maximization(string path, int n, int k, int t, int c, string M){
+void icrim::check_update() {
+    int flag = 0;// f=1 indicates that updating is needed
+    if(tou < toucom){
+        f = 1;
+    }else if(hub[u]){
+        for(i;;){
+            // for each neighbournode of i
+            if(tau < taucom[v]){
+                f = 1;
+                break;
+            } 
+        }
+    }
+    return f;
+}
+
+void icrim::influence_maximization(string path, int n, int k, int t, int c, string M){
     // check if correct diffusion model
     // call initialize to allocatespace
     // (load)divide graph into communities using necd
 
     // set totalinfluence = 0
-    
-    for(;;){// for each seedsize(k)
-        
-        for(;;){// for each node belonging to the set of nodes
-            // if the node is not icluded in seed set(name present in array)
 
-            //calculating the community based marginal influence spread
+    while(!pq.empty()){// make priority queue null
+        pq.pop();
+    }
+    
+    for(;;){// for each node
+
+        //calculating the community based marginal influence spread
+        // check model(IC OR LT)
+
+        // for ic call CIC
+
+        // for lt call CLT
+
+        // push node, marginal spread into priority queue
+
+    }
+    
+    // for each community set tc to zero
+    for(;;){
+
+    }
+
+    while(i < k){
+        // remove front tuple from priority queue
+
+        if(check_update(/*for tuple*/)){
             // check model(IC OR LT)
 
             // for ic call CIC
 
             // for lt call CLT
+        }else{
+            // a new seed is found
+            // add seed
+            // update totalinfluence
+            // update influence spread of each community
 
+            // update tc
+
+            if(hub[u]){
+                for(;;){// for each neighbour
+                    // update tc for this community
+                    // i++
+                }
+            }
         }
     }
-    
-    // push new seet node into seedset array
-    // increment totalinfluence
-    // mark it as seed
+
 }
 
-void bcrim::clear(){
+void icrim::clear(){
     // to deallocate memory used
 }
 

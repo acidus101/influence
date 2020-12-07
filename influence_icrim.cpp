@@ -3,8 +3,8 @@
 // TN = records timestamp when node's MIS is computed
 #include "ICRIM.h"
 
-std::default_random_engine generator((unsigned int)(time(NULL)));
-std::uniform_real_distribution<double> dist(0.0, 1.0);
+std::default_random_engine generatorI((unsigned int)(time(NULL)));
+std::uniform_real_distribution<double> distI(0.0, 1.0);
 
 // constructor for icrim
 Icrim::Icrim(){
@@ -193,7 +193,7 @@ void Icrim::Extend_seedsIC(int u){
 			int node = G[cur_node][j].node; // neighbour
 			double p = G[cur_node][j].p; 
 			if ((comm[node] != comm[cur_node]) && (!visited[node])) {
-				double puw = dist(generator);// puw a random number(define)
+				double puw = distI(generatorI);// puw a random number(define)
 				if (puw <= p) { // activate successfully (extended)
 					visited[node] = 1;
 					H[comm[node]].push_back(node);
@@ -215,7 +215,7 @@ void Icrim::Extend_seedsIC(int u){
             int node = G[u][i].node;
             double p = G[u][i].p;
             if((comm[node] != comm[u]) && (!visited[node])){
-                double puw = dist(generator);// puw a random number [0,1]
+                double puw = distI(generatorI);// puw a random number [0,1]
                 if(puw <= p){
                     visited[node] = 1;
                     H[comm[node]].push_back(node);
@@ -229,7 +229,7 @@ void Icrim::Extend_seedsIC(int u){
 
 void Icrim::Extend_seedsLT(int u){
     for(int i = 0; i < num_node; i++){
-        threshold[i] = dist(generator);// initialize threshold to a random number
+        threshold[i] = distI(generatorI);// initialize threshold to a random number
         weight[i] = 0.0;// intialize the added weight to zero
         visited[i] = 0;
     }
@@ -338,7 +338,7 @@ double Icrim::IC(int t, int cm){
 			double p = nbr[cur_node][j].p;
             if(!visited[node]){// does not belong to the current active node set
                 // find a random number pw [0,1]
-                double pw = dist(generator);
+                double pw = distI(generatorI);
                 if(pw <= p){
                     // activate the node pushing into the active nodes queue 
                     queue.push(node);
@@ -463,12 +463,13 @@ void Icrim::output_to_file(string path, string model, int k, double timecost, do
 
 	ofile << setiosflags(ios::fixed);
 	ofile << path << endl;
-	ofile << "size: " << k << endl;
-	ofile << "time: " << setprecision(6) << timecost << " " << "community influence: " << influencespread << endl;
+	ofile << "seed size: " << k << endl;
+	ofile << "time taken: " << setprecision(6) << timecost << endl;
+    ofile << "community influence: " << influencespread << endl;
 	for (int i = 0; i < (int)seed_set.size(); i++)
 		ofile << seed_set[i] << " ";
 	ofile << endl;
-	ofile << "=============================================" << endl;
+	ofile << "------------------------------------------------------" << endl;
 	ofile.close();
 }
 
@@ -660,7 +661,7 @@ double Icrim::RandCasIC(int k, int t)
 				int node = G[cur_node][j].node; // neighbour
 				double p = G[cur_node][j].p;
 				if (!visited[node]) {
-					double pw = dist(generator);
+					double pw = distI(generatorI);
 					if (pw <= p) {//activate successfully
 						queue.push(node);
 						visited[node] = 1;
@@ -684,7 +685,7 @@ double Icrim::RandCasLT(int k, int t)
 		for (int i = 0; i < num_node; i++) {
 			visited[i] = 0;
 			weight[i] = 0.0;
-			threshold[i] = dist(generator);
+			threshold[i] = distI(generatorI);
 		}
 
 		for (int i = 0; i < k; i++) {

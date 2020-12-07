@@ -454,13 +454,13 @@ void Bcrim::output_to_file(string path, string model, int k, double timecost, do
 
 	ofile << setiosflags(ios::fixed);
 	ofile << path << endl;
-	ofile << "size: " << k << endl;
-	ofile << "time: " << setprecision(6) << timecost << endl;
+	ofile << "seed size: " << k << endl;
+	ofile << "time taken: " << setprecision(6) << timecost << endl;
     ofile << "community influence: " << influencespread << endl;
 	for (int i = 0; i < (int)seed_set.size(); i++)
 		ofile << seed_set[i] << " ";
 	ofile << endl;
-	ofile << "=============================================" << endl;
+	ofile << "------------------------------------------------------" << endl;
 	ofile.close();
 }
 

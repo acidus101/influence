@@ -39,10 +39,10 @@ int main(){
     int nodenum[10];
     int c[10];
 
-    string model = "LT";// define model(LT OR IC) 
+    string model = "IC";// define model(LT OR IC) 
     int k = 30;
     
-    path[0] = "Data/";
+    path[0] = "data/";
     nodenum[0] = 75888;
     c[0] = 20;
 

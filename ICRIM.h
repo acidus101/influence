@@ -3,15 +3,6 @@
 #define ICRIM_H_
 
 #include<bits/stdc++.h>
-// #include <map>
-// #include <sstream>
-// #include <fstream>
-// #include <cmath>
-// #include <ctime>
-// #include <cstring>
-// #include <stdlib.h>
-// #include <iomanip>
-// #include <random>
 using namespace std;
 
 struct NeighbourIMP {

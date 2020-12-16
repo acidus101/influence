@@ -549,11 +549,7 @@ void Icrim::influence_maximization(string path, int n, int k, int t, int c, stri
 		}
 
     }
-    
-    // // for each community set tc to zero
-    // for(;;){
 
-    // }
 
 	int i = 0;
 	int flag = 1;
